@@ -1,2 +1,2 @@
-# english-cards-app
+# english-card-app
 Created with CodeSandbox
