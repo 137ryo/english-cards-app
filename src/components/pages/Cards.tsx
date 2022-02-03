@@ -44,7 +44,7 @@ export const Cards: VFC = () => {
   //const [wordCard, setWordCard] = useState([]);
 
   // 英単語リスト
-  const [cardList, setCardList] = useState([{}]);
+  const [cardList, setCardList] = useState([{ question: "", answer: "" }]);
 
   const [questionWord, serQuestionWord] = useState("");
 
@@ -100,9 +100,13 @@ export const Cards: VFC = () => {
         <div className="incomplete-area">
           <p className="title">未完了のTODO</p>
           <ul>
-            {/* {wordCard.map((obj) => (
-            <WordCard key={} question={obj} answer= />
-          ))} */}
+            {cardList.map((obj) => (
+              <WordCard
+                key={obj.question}
+                question={obj.question}
+                answer={obj.answer}
+              />
+            ))}
           </ul>
         </div>
       </SUsersArea>
