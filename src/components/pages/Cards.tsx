@@ -16,6 +16,7 @@ const SContainer = styled.div`
 
 const SUsersArea = styled.div`
   padding-top: 40px;
+  align-items: center;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -97,18 +98,15 @@ export const Cards: VFC = () => {
       </SInputContainer>
       <br />
       <SUsersArea>
-        <div className="incomplete-area">
-          <p className="title">未完了のTODO</p>
-          <ul>
-            {cardList.map((obj) => (
-              <WordCard
-                key={obj.question}
-                question={obj.question}
-                answer={obj.answer}
-              />
-            ))}
-          </ul>
-        </div>
+        <ul>
+          {cardList.map((obj) => (
+            <WordCard
+              key={obj.question}
+              question={obj.question}
+              answer={obj.answer}
+            />
+          ))}
+        </ul>
       </SUsersArea>
     </SContainer>
   );

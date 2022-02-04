@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { memo, VFC } from "react";
 import styled from "styled-components";
 
 const SInput = styled.input`
@@ -12,7 +12,7 @@ type Props = {
   onChange: any; // TODO anyから変更する
 };
 
-export const Input: VFC<Props> = (props) => {
+export const Input: VFC<Props> = memo((props) => {
   const { value, placeholder = "", onChange } = props;
   return (
     <SInput
@@ -22,4 +22,4 @@ export const Input: VFC<Props> = (props) => {
       onChange={onChange}
     />
   );
-};
+});
