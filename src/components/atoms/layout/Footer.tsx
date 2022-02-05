@@ -11,5 +11,5 @@ const SFooter = styled.footer`
 `;
 
 export const Footer = () => {
-  return <SFooter>&copy; 2021 test inc. </SFooter>;
+  return <SFooter>&copy; 2022 test inc. </SFooter>;
 };

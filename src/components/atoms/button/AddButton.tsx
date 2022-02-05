@@ -4,8 +4,8 @@ import { BaseButton } from "./BaseButton";
 
 type Props = {
   children: string;
-  onChange: () => void;
   onClick: () => void;
+  disabled: boolean;
 };
 
 const SButton = styled(BaseButton)`
@@ -13,9 +13,9 @@ const SButton = styled(BaseButton)`
 `;
 
 export const AddButton: VFC<Props> = (props) => {
-  const { children, onChange, onClick } = props;
+  const { children, onClick, disabled } = props;
   return (
-    <SButton onChange={onChange} onClick={onClick}>
+    <SButton onClick={onClick} disabled={disabled}>
       {children}
     </SButton>
   );

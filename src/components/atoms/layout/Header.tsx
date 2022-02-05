@@ -17,7 +17,7 @@ export const Header = () => {
     <SHeader>
       <SLink to="/">Top</SLink>
       <SLink to="/cards">Card</SLink>
-      <SLink to="/setting">設定</SLink>
+      <SLink to="/help">Help</SLink>
     </SHeader>
   );
 };

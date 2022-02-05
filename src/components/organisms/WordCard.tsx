@@ -1,7 +1,6 @@
-import { memo, VFC } from "react";
+import { memo, useState, VFC } from "react";
 import styled from "styled-components";
-import { Card } from "../atoms/card/Card";
-//import { UserIconWithName } from "../../molecules/user/UserIconWithName";
+import { CommonButton } from "../atoms/button/CommonButton";
 
 const SContainer = styled.div`
   display: flex;
@@ -10,13 +9,14 @@ const SContainer = styled.div`
   padding: 20px;
   margin: 20px;
   background-color: #22eeef;
-  box-shadow: #ddd 0px 0px 4px 2px;
+  box-shadow: #ddd 0px 0px 6px 2px;
   border-radius: 10px;
 `;
 
 const SQuestion = styled.p`
   margin: 5px;
   font-size: 24px;
+  font-weight: bold;
 `;
 
 const SAnswer = styled.p`
@@ -24,32 +24,39 @@ const SAnswer = styled.p`
   font-size: 16px;
 `;
 
-const SOpen = styled.button`
-  margin: 5px;
-  padding: 6px 20px;
-
-  border: none;
-  background-color: #96ffaa;
-  border-radius: 9999px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.8;
-  }
+const SButtonArea = styled.div`
+  display: flex;
 `;
 
 type Props = {
+  index: number;
   question: string;
   answer: string;
+  onClickDelete: any;
 };
 
 export const WordCard: VFC<Props> = memo((props) => {
-  const { question, answer } = props;
+  const { index, question, answer, onClickDelete } = props;
+
+  // 答えの開閉管理
+  const [open, setOpen] = useState(false);
+
+  const onClickOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <SContainer>
       <SQuestion>{question}</SQuestion>
-      <SOpen>答えを見る</SOpen>
-      <SAnswer>{answer}</SAnswer>
+      <SButtonArea>
+        {open ? (
+          <CommonButton onClick={onClickOpen}>答えを閉じる</CommonButton>
+        ) : (
+          <CommonButton onClick={onClickOpen}>答えを見る</CommonButton>
+        )}
+        <CommonButton onClick={() => onClickDelete(index)}>削除</CommonButton>
+      </SButtonArea>
+      {open ? <SAnswer>{answer}</SAnswer> : null}
     </SContainer>
   );
 });

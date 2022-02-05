@@ -4,8 +4,8 @@ import { TopPageLayout } from "../components/templates/TopPageLayout";
 import { CommonLayout } from "../components/templates/CommonLayout";
 import { Top } from "../components/pages/Top";
 import { Cards } from "../components/pages/Cards";
-import { Setting } from "../components/pages/Setting";
-//import { HeaderRoutes } from "./HeaderRoutes";
+import { Help } from "../components/pages/Help";
+import { Page404 } from "../components/pages/Page404";
 
 export const Router = () => {
   return (
@@ -21,27 +21,16 @@ export const Router = () => {
             <Cards />
           </CommonLayout>
         </Route>
-        <Route path="/setting">
+        <Route path="/help">
           <CommonLayout>
-            <Setting />
+            <Help />
           </CommonLayout>
         </Route>
-        {/* <Route
-          path="/cards"
-          render={({ match: { url } }) => (
-            <Switch>
-              {HeaderRoutes.map((route: any) => (
-                <Route
-                  key={route.path}
-                  exact={route.exact}
-                  path={`${url}${route.path}`}
-                >
-                  {route.children}
-                </Route>
-              ))}
-            </Switch>
-          )}
-        /> */}
+        <Route>
+          <TopPageLayout>
+            <Page404 />
+          </TopPageLayout>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

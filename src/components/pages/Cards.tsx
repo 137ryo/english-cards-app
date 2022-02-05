@@ -1,51 +1,43 @@
 import React, { ChangeEvent, useState, VFC } from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
 
-import { CommonButton } from "../atoms/button/CommonButton";
 import { WordCard } from "../organisms/WordCard";
-import { userState } from "../../hooks/userState";
-import { Input } from "../atoms/input/Input";
+import { AddButton } from "../atoms/button/AddButton";
+import { AddInput } from "../atoms/input/AddInput";
 
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 20px;
 `;
 
-const SUsersArea = styled.div`
-  padding-top: 40px;
-  align-items: center;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px;
-`;
-const SInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const SButtonWrapper = styled.div`
+const SInputArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-
+  padding: 30px;
   background-color: #fff;
   box-shadow: #ddd 0px 0px 4px 2px;
   border-radius: 10px;
 `;
 
+const SCardArea = styled.ul`
+  padding: 20px;
+  width: 100%;
+  flex-direction: column;
+`;
+
+const SMessage = styled.p`
+  color: red;
+  text-align: center;
+`;
+
 export const Cards: VFC = () => {
-  // const { userInfo, setUserInfo } = useContext(UserContext);
-  //const [userInfo, setUserInfo] = useRecoilState(userState);
-
-  // 未完了のTODOリスト
-  //const [wordCard, setWordCard] = useState([]);
-
-  // 英単語リスト
-  const [cardList, setCardList] = useState([{ question: "", answer: "" }]);
+  // 英単語カードリスト
+  const [cardList, setCardList] = useState([
+    { question: "Sample", answer: "サンプル" }
+  ]);
 
   const [questionWord, serQuestionWord] = useState("");
 
@@ -59,6 +51,7 @@ export const Cards: VFC = () => {
     serAnswerWord(e.target.value);
   };
 
+  // 英単語カードの追加
   const onClick = () => {
     if (questionWord === "" && answerWord === "") return;
 
@@ -66,48 +59,52 @@ export const Cards: VFC = () => {
       ...cardList,
       { question: questionWord, answer: answerWord }
     ];
-    //setCardList([...cardList, {question: questionWord, answer: answerWord}]);
-
     setCardList(newCardList);
-    // setValues({ ...values, title: 'changed title' });
   };
 
-  console.log(cardList);
-
-  //const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
+  // 英単語カードの削除
+  const onClickDelete = (index: number) => {
+    const newCardList = [...cardList];
+    newCardList.splice(index, 1);
+    setCardList(newCardList);
+  };
 
   return (
     <SContainer>
-      <h2>英単語カード一覧</h2>
-      <SInputContainer>
-        <SButtonWrapper>
-          <Input
-            value={questionWord}
-            placeholder="英単語を入力"
-            onChange={onChangeQuestion}
+      <h2>Card View</h2>
+      <SInputArea>
+        <AddInput
+          value={questionWord}
+          placeholder="英単語を入力"
+          onChange={onChangeQuestion}
+          disabled={cardList.length >= 6}
+        />
+        <br />
+        <AddInput
+          value={answerWord}
+          placeholder="答えを入力"
+          onChange={onChangeAnswer}
+          disabled={cardList.length >= 6}
+        />
+        <br />
+        <AddButton onClick={onClick} disabled={cardList.length >= 6}>
+          追加
+        </AddButton>
+        {cardList.length >= 10 && (
+          <SMessage>登録できる英単語カードは10個までです。</SMessage>
+        )}
+      </SInputArea>
+      <SCardArea>
+        {cardList.map((obj, index) => (
+          <WordCard
+            key={obj.question}
+            index={index}
+            question={obj.question}
+            answer={obj.answer}
+            onClickDelete={onClickDelete}
           />
-          <br />
-          <Input
-            value={answerWord}
-            placeholder="答えを入力"
-            onChange={onChangeAnswer}
-          />
-          <br />
-          <CommonButton onClick={onClick}>追加</CommonButton>
-        </SButtonWrapper>
-      </SInputContainer>
-      <br />
-      <SUsersArea>
-        <ul>
-          {cardList.map((obj) => (
-            <WordCard
-              key={obj.question}
-              question={obj.question}
-              answer={obj.answer}
-            />
-          ))}
-        </ul>
-      </SUsersArea>
+        ))}
+      </SCardArea>
     </SContainer>
   );
 };
