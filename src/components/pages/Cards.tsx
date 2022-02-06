@@ -53,7 +53,7 @@ export const Cards: VFC = () => {
 
   // 英単語カードの追加
   const onClick = () => {
-    if (questionWord === "" && answerWord === "") return;
+    if (questionWord === "" || answerWord === "") return;
 
     const newCardList = [
       ...cardList,
