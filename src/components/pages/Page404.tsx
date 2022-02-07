@@ -1,5 +1,20 @@
-import { memo, VFC } from "react";
+import { VFC } from "react";
+import styled from "styled-components";
 
-export const Page404: VFC = memo(() => {
-  return <p>404 NotFound</p>;
-});
+const SContainer = styled.div`
+  text-align: center;
+`;
+
+const STitle = styled.p`
+  margin-top: 150px;
+  font-size: 40px;
+  font-family: "Lato", sans-serif;
+`;
+
+export const Page404: VFC = () => {
+  return (
+    <SContainer>
+      <STitle>404 NotFound</STitle>
+    </SContainer>
+  );
+};

@@ -9,7 +9,7 @@ type Props = {
 };
 
 const SButton = styled(BaseButton)`
-  background-color: #11999e;
+  background-color: #e83825;
 `;
 
 export const AddButton: VFC<Props> = (props) => {

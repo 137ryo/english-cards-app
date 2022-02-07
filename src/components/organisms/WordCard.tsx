@@ -8,8 +8,8 @@ const SContainer = styled.div`
   align-items: center;
   padding: 20px;
   margin: 20px;
-  background-color: #22eeef;
-  box-shadow: #ddd 0px 0px 6px 2px;
+  background-color: #fff;
+  box-shadow: #858b93 0px 0px 2px 2px;
   border-radius: 10px;
 `;
 

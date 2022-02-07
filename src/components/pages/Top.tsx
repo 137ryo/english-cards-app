@@ -1,10 +1,16 @@
-import React, { VFC } from "react";
+import { VFC } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { CommonButton } from "../atoms/button/CommonButton";
 
 const SContainer = styled.div`
   text-align: center;
+`;
+
+const STitle = styled.p`
+  margin-top: 150px;
+  font-size: 40px;
+  font-family: "Lato", sans-serif;
 `;
 
 export const Top: VFC = () => {
@@ -16,7 +22,7 @@ export const Top: VFC = () => {
 
   return (
     <SContainer>
-      <h2>English Word Card</h2>
+      <STitle>English Word Card</STitle>
       <CommonButton onClick={onClickStart}>スタート</CommonButton>
     </SContainer>
   );

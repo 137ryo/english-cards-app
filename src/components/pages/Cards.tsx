@@ -18,7 +18,7 @@ const SInputArea = styled.div`
   align-items: center;
   padding: 30px;
   background-color: #fff;
-  box-shadow: #ddd 0px 0px 4px 2px;
+  box-shadow: #858b93 0px 0px 2px 2px;
   border-radius: 10px;
 `;
 
@@ -26,6 +26,10 @@ const SCardArea = styled.ul`
   padding: 20px;
   width: 100%;
   flex-direction: column;
+`;
+
+const STitle = styled.h1`
+  font-family: "Lato", sans-serif;
 `;
 
 const SMessage = styled.p`
@@ -71,7 +75,7 @@ export const Cards: VFC = () => {
 
   return (
     <SContainer>
-      <h2>Card View</h2>
+      <STitle>English Card View</STitle>
       <SInputArea>
         <AddInput
           value={questionWord}

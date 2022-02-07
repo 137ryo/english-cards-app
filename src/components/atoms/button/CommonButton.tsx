@@ -8,7 +8,7 @@ type Props = {
 };
 
 const SButton = styled(BaseButton)`
-  background-color: #11999e;
+  background-color: #008cb4;
   margin: 5px;
 `;
 
