@@ -3,8 +3,8 @@ Created with CodeSandbox
 <br/>
 <br/>
 英単語帳をイメージした簡易暗記アプリ<br/>
-開発環境:codesandbox<br/>
 <br/>
+開発環境:codesandbox<br/>
 使用言語：React, TypeScript<br/>
 <br/>
 ●Atomic-Design<br/>
